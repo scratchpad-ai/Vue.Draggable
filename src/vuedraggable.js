@@ -56,7 +56,8 @@ function isTransition(slots) {
 }
 
 function getSlot(slot, scopedSlot, key) {
-  return slot[key] || (scopedSlot[key] ? scopedSlot[key]() : undefined);
+  const nodes = slot[key] || (scopedSlot[key] ? scopedSlot[key]() : undefined);
+  return (nodes || []).filter(f => f.tag);
 }
 
 function computeChildrenAndOffsets(children, slot, scopedSlot) {
